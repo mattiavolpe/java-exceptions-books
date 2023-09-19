@@ -56,4 +56,8 @@ public class Libro {
 		else
 			throw new Exception("Editor can't be empty");
 	}
+	
+	public String printToFile() {
+		return "Title: " + titolo + "\nPages: " + pagine + "\nAuthor: " + autore + "\nEditor: " + editore;
+	}
 }

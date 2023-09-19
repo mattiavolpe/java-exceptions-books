@@ -1,5 +1,7 @@
 package org.java.book;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -41,5 +43,23 @@ public class Main {
 		}
 		
 		sc.close();
+		
+		FileWriter writer = null;
+		
+		try {
+			writer = new FileWriter("./books.txt");
+			
+			for (int i = 0; i < books.length; i++) {
+				writer.write(books[i].printToFile() + "\n\n");
+			}
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
+		} finally {
+			try {
+				writer.close();				
+			} catch (IOException e) {
+				System.err.println(e.getMessage());
+			}
+		}
 	}
 }
