@@ -1,6 +1,7 @@
 package org.java.book;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -67,13 +68,28 @@ public class Main {
 				writer.write(books[i].printToFile() + "\n\n");
 			}
 		} catch (IOException e) {
-			System.err.println(e.getMessage());
+			System.err.println("Error writing file");
 		} finally {
 			try {
 				writer.close();				
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
 			}
+		}
+		
+		Scanner reader = null;
+		
+		try {
+			reader = new Scanner(booksFile);
+			
+			while (reader.hasNextLine()) {
+				System.out.println(reader.nextLine());
+			}
+		} catch (IOException e) {
+			System.err.println("Error reading file");
+		} finally {
+			if (reader != null)
+				reader.close();				
 		}
 	}
 }
