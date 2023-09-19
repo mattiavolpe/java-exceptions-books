@@ -47,11 +47,11 @@ public class Main {
 		
 		sc.close();
 		
-		File myFile = new File("./books.txt");
+		File booksFile = new File("./books.txt");
 		
-		if (!myFile.exists()) {
+		if (!booksFile.exists()) {
 			try {
-				myFile.createNewFile();
+				booksFile.createNewFile();
 			} catch (IOException e) {
 				System.err.println("Unable to create the file \"books.txt\".\nTRY AGAIN");
 				return;
@@ -61,7 +61,7 @@ public class Main {
 		FileWriter writer = null;
 		
 		try {
-			writer = new FileWriter(myFile);
+			writer = new FileWriter(booksFile);
 			
 			for (int i = 0; i < books.length; i++) {
 				writer.write(books[i].printToFile() + "\n\n");
