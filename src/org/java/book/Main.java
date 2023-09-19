@@ -1,5 +1,6 @@
 package org.java.book;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -35,6 +36,8 @@ public class Main {
 				System.out.print("Enter the editor: ");
 				String editor = sc.nextLine();
 				
+				System.out.print("\n");
+				
 				books[i] = new Libro(title, pages, author, editor);
 			} catch (Exception e) {
 				i--;
@@ -44,10 +47,21 @@ public class Main {
 		
 		sc.close();
 		
+		File myFile = new File("./books.txt");
+		
+		if (!myFile.exists()) {
+			try {
+				myFile.createNewFile();
+			} catch (IOException e) {
+				System.err.println("Unable to create the file \"books.txt\".\nTRY AGAIN");
+				return;
+			}
+		}
+		
 		FileWriter writer = null;
 		
 		try {
-			writer = new FileWriter("./books.txt");
+			writer = new FileWriter(myFile);
 			
 			for (int i = 0; i < books.length; i++) {
 				writer.write(books[i].printToFile() + "\n\n");
