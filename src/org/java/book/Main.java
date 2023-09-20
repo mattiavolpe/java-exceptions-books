@@ -1,6 +1,7 @@
 package org.java.book;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -37,7 +38,7 @@ public class Main {
 				String editor = sc.nextLine();
 				
 				System.out.print("\n");
-				
+
 				books[i] = new Libro(title, pages, author, editor);
 			} catch (Exception e) {
 				i--;
@@ -52,7 +53,7 @@ public class Main {
 		if (!booksFile.exists()) {
 			try {
 				booksFile.createNewFile();
-			} catch (IOException e) {
+			} catch (Exception e) {
 				System.err.println("Unable to create the file \"books.txt\".\nTRY AGAIN");
 				return;
 			}
@@ -68,10 +69,10 @@ public class Main {
 			}
 		} catch (IOException e) {
 			System.err.println("Error writing file");
-		} finally {
+		}  finally {
 			try {
 				writer.close();				
-			} catch (IOException e) {
+			} catch (Exception e) {
 				System.err.println(e.getMessage());
 			}
 		}
@@ -84,9 +85,9 @@ public class Main {
 			while (reader.hasNextLine()) {
 				System.out.println(reader.nextLine());
 			}
-		} catch (IOException e) {
+		} catch (FileNotFoundException e) {
 			System.err.println("Error reading file");
-		} finally {
+		}  finally {
 			if (reader != null)
 				reader.close();				
 		}
